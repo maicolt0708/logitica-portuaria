@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Puerto Urabá | Logística portuaria</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- ACCESO DE DEMOSTRACIÓN -->
+    <section id="login" class="pantalla-login" aria-labelledby="titulo-login">
+        <div class="tarjeta-login">
+            <div class="barra-login">
+                <div class="luces" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span>PUERTO URABÁ</span>
+            </div>
+
+            <div class="contenido-login">
+                <div class="logo logo-grande" aria-hidden="true">⚓</div>
+
+                <h1 id="titulo-login">Bienvenido</h1>
+                <p>Ingresa al Sistema de Logística Portuaria.</p>
+
+                <form id="form-login">
+                    <label for="usuario">Usuario</label>
+                    <input
+                        id="usuario"
+                        type="text"
+                        placeholder="Escribe tu usuario"
+                        maxlength="40"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <label for="contrasena">Contraseña</label>
+                    <div class="campo-contrasena">
+                        <input
+                            id="contrasena"
+                            type="password"
+                            placeholder="Escribe una contraseña"
+                            autocomplete="off"
+                            required
+                        >
+                        <button
+                            id="ver-contrasena"
+                            type="button"
+                            aria-controls="contrasena"
+                            aria-pressed="false"
+                        >
+                            Mostrar
+                        </button>
+                    </div>
+
+                    <p id="error-login" class="error" role="alert"></p>
+
+                    <button type="submit" class="boton boton-principal ancho">
+                        Iniciar sesión →
+                    </button>
+                </form>
+
+                <small class="nota-login">
+                    Demostración académica. Usa datos inventados:
+                    cualquier usuario y contraseña no vacíos permiten entrar.
+                </small>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANEL PRINCIPAL -->
+    <div id="aplicacion" class="aplicacion" hidden>
+        <header class="cabecera">
+            <div class="identidad">
+                <span class="logo" aria-hidden="true">⚓</span>
+                <div>
+                    <h1>Puerto Urabá</h1>
+                    <p>Sistema de Logística Portuaria</p>
+                </div>
+            </div>
+
+            <div class="sesion">
+                <span id="saludo"></span>
+                <button id="cerrar-sesion" class="boton boton-secundario">
+                    Cerrar sesión
+                </button>
+            </div>
+        </header>
+
+    
+        </div>
+
+        <div class="estructura">
+            <aside class="sidebar">
+                <p class="etiqueta-menu">MENÚ PRINCIPAL</p>
+
+                <nav aria-label="Navegación principal">
+                    <button
+                        class="menu activo"
+                        data-vista="inicio"
+                        aria-controls="vista-inicio"
+                        aria-current="page"
+                    >
+                        Inicio
+                    </button>
+
+                    <button
+                        class="menu"
+                        data-vista="contenedores"
+                        aria-controls="vista-contenedores"
+                    >
+                        Contenedores
+                    </button>
+
+                    <button
+                        class="menu"
+                        data-vista="transportistas"
+                        aria-controls="vista-transportistas"
+                    >
+                        Transportistas
+                    </button>
+
+                    <button
+                        class="menu"
+                        data-vista="movimientos"
+                        aria-controls="vista-movimientos"
+                    >
+                        Movimientos
+                    </button>
+
+                    <button
+                        class="menu"
+                        data-vista="reportes"
+                        aria-controls="vista-reportes"
+                    >
+                        Reportes
+                    </button>
+                </nav>
+
+                <p class="pie-menu">
+                    <span class="punto"></span>
+                    Datos de demostración
+                </p>
+            </aside>
+
+            <main>
+                <div class="encabezado-vista">
+                    <div>
+                        <p class="ruta">
+                            Puerto Urabá / <span id="ruta-actual">Inicio</span>
+                        </p>
+                        <h2 id="titulo-vista" tabindex="-1">Inicio</h2>
+                    </div>
+                    <time id="fecha"></time>
+                </div>
+
+                <!-- ESTADÍSTICAS -->
+                <section class="estadisticas" aria-label="Resumen de contenedores">
+                    <article class="estadistica">
+                        <strong id="total-contenedores">0</strong>
+                        <span>Contenedores</span>
+                    </article>
+
+                    <article class="estadistica">
+                        <strong id="total-transito">0</strong>
+                        <span>En tránsito</span>
+                    </article>
+
+                    <article class="estadistica">
+                        <strong id="total-pendientes">0</strong>
+                        <span>Pendientes</span>
+                    </article>
+                </section>
+
+                <!-- INICIO -->
+                <section id="vista-inicio" class="vista">
+                    <div class="bienvenida">
+                        <div>
+                            <span class="etiqueta">CONTROL DE OPERACIONES</span>
+                            <h3>La información de tu carga en un solo lugar</h3>
+                            <p>
+                                Consulta contenedores, revisa novedades
+                                y mantén actualizados los registros.
+                            </p>
+
+                            <button
+                                class="boton boton-principal"
+                                data-ir="contenedores"
+                            >
+                                Consultar contenedores →
+                            </button>
+                        </div>
+
+                        <div class="ilustracion" aria-hidden="true">
+                            <div class="contenedor contenedor-uno"></div>
+                            <div class="contenedor contenedor-dos"></div>
+                            <div class="contenedor contenedor-tres"></div>
+                            <div class="base-puerto"></div>
+                        </div>
+                    </div>
+
+                    <div class="avisos">
+                        <article class="aviso amarillo">
+                            <span class="etiqueta">POR REVISAR</span>
+                            <h3>Contenedores pendientes</h3>
+                            <p id="aviso-pendientes"></p>
+                            <button
+                                class="enlace-boton"
+                                data-filtrar="Pendiente"
+                            >
+                                Revisar pendientes →
+                            </button>
+                        </article>
+
+                        <article class="aviso azul">
+                            <span class="etiqueta">EN MOVIMIENTO</span>
+                            <h3>Cargas en tránsito</h3>
+                            <p id="aviso-transito"></p>
+                            <button
+                                class="enlace-boton"
+                                data-filtrar="En tránsito"
+                            >
+                                Ver contenedores →
+                            </button>
+                        </article>
+
+                        <article class="aviso verde">
+                            <span class="etiqueta">RECORDATORIO</span>
+                            <h3>Mantén los registros al día</h3>
+                            <p>
+                                Revisa los datos antes de registrar una carga.
+                                Actualiza su estado cuando cambie la operación.
+                            </p>
+                        </article>
+                    </div>
+
+                    <article class="panel actividad">
+                        <h3>Última actividad</h3>
+                        <p id="ultima-actividad"></p>
+                    </article>
+                </section>
+
+                <!-- CONTENEDORES -->
+                <section id="vista-contenedores" class="vista panel" hidden>
+                    <div class="panel-cabecera">
+                        <div>
+                            <h3>Registro de contenedores</h3>
+                            <p>Busca, registra y actualiza la información.</p>
+                        </div>
+
+                        <button id="nuevo-contenedor" class="boton boton-principal">
+                            + Nuevo contenedor
+                        </button>
+                    </div>
+
+                    <div class="filtros">
+                        <div class="buscar">
+                            <label for="busqueda">Buscar contenedor</label>
+                            <input
+                                id="busqueda"
+                                type="search"
+                                placeholder="Código, carga o ubicación"
+                            >
+                        </div>
+
+                        <div>
+                            <label for="filtro-estado">Estado</label>
+                            <select id="filtro-estado">
+                                <option value="">Todos los estados</option>
+                                <option>En puerto</option>
+                                <option>En tránsito</option>
+                                <option>Pendiente</option>
+                                <option>Entregado</option>
+                            </select>
+                        </div>
+
+                        <button id="limpiar-filtros" class="boton boton-claro">
+                            Limpiar
+                        </button>
+                    </div>
+
+                    <div
+                        class="tabla-scroll"
+                        role="region"
+                        aria-label="Tabla de contenedores"
+                        tabindex="0"
+                    >
+                        <table>
+                            <caption class="sr-only">
+                                Contenedores registrados y sus estados
+                            </caption>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Código</th>
+                                    <th scope="col">Carga</th>
+                                    <th scope="col">Ubicación</th>
+                                    <th scope="col">Transportista</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Actualizar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-contenedores"></tbody>
+                        </table>
+                    </div>
+
+                    <p id="sin-resultados" class="vacio" hidden>
+                        No se encontraron contenedores con esos filtros.
+                    </p>
+
+                    <p id="cantidad-resultados" class="tabla-pie" role="status"></p>
+                </section>
+
+                <!-- TRANSPORTISTAS -->
+                <section id="vista-transportistas" class="vista panel" hidden>
+                    <div class="panel-cabecera">
+                        <div>
+                            <h3>Empresas transportistas</h3>
+                            <p>Consulta la cantidad de contenedores asignados.</p>
+                        </div>
+                    </div>
+
+                    <div id="lista-transportistas" class="transportistas"></div>
+                </section>
+
+                <!-- MOVIMIENTOS -->
+                <section id="vista-movimientos" class="vista panel" hidden>
+                    <div class="panel-cabecera">
+                        <div>
+                            <h3>Historial de movimientos</h3>
+                            <p>Registros y cambios de estado realizados en el panel.</p>
+                        </div>
+                    </div>
+
+                    <ul id="lista-movimientos" class="movimientos"></ul>
+                </section>
+
+                <!-- REPORTES -->
+                <section id="vista-reportes" class="vista panel" hidden>
+                    <div class="panel-cabecera">
+                        <div>
+                            <h3>Resumen de operaciones</h3>
+                            <p>Distribución de contenedores por estado.</p>
+                        </div>
+
+                        <button id="descargar-reporte" class="boton boton-principal">
+                            Descargar CSV
+                        </button>
+                    </div>
+
+                    <div id="grafico-reportes" class="grafico"></div>
+
+                    <p class="tabla-pie">
+                        El archivo incluye todos los contenedores registrados.
+                    </p>
+                </section>
+
+                <footer class="pie-pagina">
+                    Puerto Urabá · Información ficticia para demostración
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    <!-- FORMULARIO PARA REGISTRAR CONTENEDORES -->
+    <dialog id="modal-contenedor" aria-labelledby="titulo-modal">
+        <form id="form-contenedor">
+            <div class="modal-cabecera">
+                <h2 id="titulo-modal">Nuevo contenedor</h2>
+
+                <button
+                    id="cerrar-modal"
+                    type="button"
+                    class="cerrar"
+                    aria-label="Cerrar formulario"
+                >
+                    ×
+                </button>
+            </div>
+
+            <p class="descripcion">
+                Completa los datos de la carga.
+            </p>
+
+            <label for="codigo">Código del contenedor</label>
+            <input
+                id="codigo"
+                type="text"
+                placeholder="CONT-007"
+                pattern="[Cc][Oo][Nn][Tt]-[0-9]{3}"
+                title="Escribe CONT seguido de un guion y tres números"
+                maxlength="8"
+                autocomplete="off"
+                required
+            >
+            <small class="ayuda">Formato de ejemplo: CONT-007.</small>
+
+            <label for="carga">Tipo de carga</label>
+            <input
+                id="carga"
+                type="text"
+                placeholder="Ej. Banano"
+                maxlength="60"
+                required
+            >
+
+            <label for="ubicacion">Ubicación</label>
+            <input
+                id="ubicacion"
+                type="text"
+                placeholder="Ej. Patio A"
+                maxlength="60"
+                required
+            >
+
+            <label for="transportista">Transportista</label>
+            <select id="transportista" required>
+                <option value="">Selecciona una empresa</option>
+                <option>Transportes Urabá</option>
+                <option>Carga del Caribe</option>
+                <option>Logística del Norte</option>
+            </select>
+
+            <label for="estado">Estado inicial</label>
+            <select id="estado" required>
+                <option>Pendiente</option>
+                <option>En puerto</option>
+                <option>En tránsito</option>
+                <option>Entregado</option>
+            </select>
+
+            <p id="error-contenedor" class="error" role="alert"></p>
+
+            <button type="submit" class="boton boton-principal ancho">
+                Guardar contenedor
+            </button>
+        </form>
+    </dialog>
+
+    <div
+        id="notificacion"
+        class="notificacion"
+        role="status"
+        aria-live="polite"
+        hidden
+    ></div>
+
+    <noscript>
+        <p>Activa JavaScript en tu navegador para utilizar esta página.</p>
+    </noscript>
+</body>
+</html>
